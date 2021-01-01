@@ -1,8 +1,8 @@
 ﻿using TinYard.API.Interfaces;
 
-namespace TinYardExtensionTemplate
+namespace TinYard.BootstrapSettings
 {
-    public class TemplateExtension : IExtension
+    public class BootstrapSettingsExtension : IExtension
     {
         private IContext _context;
 
