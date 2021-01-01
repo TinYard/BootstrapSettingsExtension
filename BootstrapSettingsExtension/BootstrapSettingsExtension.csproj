@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>TinYard_Extension_Template</RootNamespace>
+    <RootNamespace>TinYard.BootstrapSettings</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +18,6 @@
     <Folder Include="API\Views\" />
     <Folder Include="API\VO\" />
     <Folder Include="Impl\Commands\" />
-    <Folder Include="Impl\Models\" />
     <Folder Include="Impl\Services\" />
     <Folder Include="Impl\VO\" />
   </ItemGroup>
