@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bootstraps>
+    <environment>production</environment>
+    <name>example</name>
+    <valid>false</valid>
+</bootstraps>

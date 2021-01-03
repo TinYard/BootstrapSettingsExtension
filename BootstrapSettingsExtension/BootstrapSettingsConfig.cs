@@ -2,6 +2,9 @@
 using TinYard.Framework.Impl.Attributes;
 using TinYard.Extensions.CommandSystem.API.Interfaces;
 using TinYard.Extensions.MediatorMap.API.Interfaces;
+using TinYard.BootstrapSettings.Impl.Models;
+using TinYard.BootstrapSettings.API.Interfaces;
+using System.IO;
 
 namespace TinYard.BootstrapSettings
 {
@@ -9,6 +12,18 @@ namespace TinYard.BootstrapSettings
     {
         [Inject]
         public IContext context;
+
+        private readonly string _bootstrapSettingsFilePath;
+
+        public BootstrapSettingsConfig()
+        {
+            _bootstrapSettingsFilePath = Directory.GetCurrentDirectory();
+        }
+
+        public BootstrapSettingsConfig(string bootstrapSettingsFilePath)
+        {
+            _bootstrapSettingsFilePath = bootstrapSettingsFilePath;
+        }
 
         public void Configure()
         {
@@ -22,6 +37,7 @@ namespace TinYard.BootstrapSettings
             //Map Commands
 
             //Map Models
+            context.Mapper.Map<IBootstrapSettingsModel>().ToValue(new XMLBootstrapSettingsModel(_bootstrapSettingsFilePath));
 
             //Map Services
         }
