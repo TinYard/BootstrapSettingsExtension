@@ -1,4 +1,9 @@
-﻿using System.Xml;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace TinYard.BootstrapSettings.Impl.Services
 {
@@ -6,25 +11,41 @@ namespace TinYard.BootstrapSettings.Impl.Services
     {
         public bool Initialized { get; }
 
-        private XmlDocument _xmlDocument;
+        private XDocument _xmlDocument;
 
         public XMLFileReaderService(string filepath)
         {
-            _xmlDocument = new XmlDocument();
-            _xmlDocument.Load(filepath);
+            _xmlDocument = XDocument.Load(filepath);
 
             Initialized = true;
         }
 
-        public bool HasNodeValue(string nodeName)
+        public bool HasNode(string nodeName)
         {
-            string val = GetNodeValue(nodeName);
-            return val != null;
+            bool exists = _xmlDocument.Descendants(nodeName).Any();
+            return exists;
         }
 
-        public string GetNodeValue(string nodeName)
+        public string GetNodeStringValue(string nodeName)
         {
-            return _xmlDocument?.DocumentElement?.SelectSingleNode(nodeName).InnerText;
+            var elements = _xmlDocument.Descendants(nodeName);
+            var first = elements.FirstOrDefault();
+            return first.Value;
+        }
+
+        public T GetNodeTValue<T>(string nodeName)
+        {
+            var nodeToDeserialize = _xmlDocument.Descendants(nodeName).FirstOrDefault();
+            var serializer = new XmlSerializer(typeof(T));
+
+            try
+            {
+                return (T)serializer.Deserialize(nodeToDeserialize.CreateReader());
+            }
+            catch(InvalidOperationException e)
+            {
+                return (T)Convert.ChangeType(nodeToDeserialize.Value, typeof(T));
+            }
         }
     }
 }

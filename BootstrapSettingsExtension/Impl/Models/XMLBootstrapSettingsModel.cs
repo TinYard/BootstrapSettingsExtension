@@ -1,4 +1,5 @@
-﻿using TinYard.BootstrapSettings.API.Interfaces;
+﻿using System;
+using TinYard.BootstrapSettings.API.Interfaces;
 using TinYard.BootstrapSettings.Impl.Services;
 
 namespace TinYard.BootstrapSettings.Impl.Models
@@ -18,7 +19,22 @@ namespace TinYard.BootstrapSettings.Impl.Models
 
         public bool HasSetting(string settingName)
         {
-            return _xmlFileReader.HasNodeValue(settingName);
+            return _xmlFileReader.HasNode(settingName);
+        }
+
+        public string GetSetting(string settingName)
+        {
+            return _xmlFileReader.GetNodeStringValue(settingName);
+        }
+
+        public T GetSetting<T>(string settingName)
+        {
+            return _xmlFileReader.GetNodeTValue<T>(settingName);
+        }
+
+        public bool TryGetSetting<T>(string settingName, out T settingValue)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

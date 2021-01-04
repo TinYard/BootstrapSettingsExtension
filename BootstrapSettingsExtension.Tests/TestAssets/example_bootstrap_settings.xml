@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bootstraps>
-    <environment>production</environment>
-    <name>example</name>
-    <valid>false</valid>
-</bootstraps>
+<Bootstraps>
+  <Environment>
+    <Name>Production</Name>
+    <OS>Windows</OS>
+    <Deployed>true</Deployed>
+  </Environment>
+  <Name>example</Name>
+  <Valid>true</Valid>/>
+</Bootstraps>
