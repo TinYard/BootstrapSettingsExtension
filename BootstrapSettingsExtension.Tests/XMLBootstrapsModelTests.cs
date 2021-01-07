@@ -58,7 +58,7 @@ namespace TinYard.BootstrapSettings.Tests
         [TestMethod]
         public void Model_Throws_On_Invalid_Get_Generic_Setting()
         {
-            Assert.ThrowsException<Exception>(() =>
+            Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 _bootstrapSettingsModel.GetSetting<bool>("Environment");
             });

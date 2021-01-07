@@ -44,7 +44,15 @@ namespace TinYard.BootstrapSettings.Impl.Services
             }
             catch(InvalidOperationException e)
             {
-                return (T)Convert.ChangeType(nodeToDeserialize.Value, typeof(T));
+                try
+                {
+                    return (T)Convert.ChangeType(nodeToDeserialize.Value, typeof(T));
+                }
+                catch
+                {
+                    //Throw the original exception if we can't perform a hard cast
+                    throw e;
+                }
             }
         }
     }
