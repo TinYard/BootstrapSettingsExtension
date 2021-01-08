@@ -16,6 +16,7 @@ namespace TinYard.BootstrapSettings.Tests
         [TestInitialize]
         public void Setup()
         {
+            //TODO : Tidy this hard coded path up.. Maybe generate a file and delete it in teardown?
             _bootstrapSettingsModel = new XMLBootstrapSettingsModel(Path.Combine(Directory.GetCurrentDirectory(), "../../../TestAssets/example_bootstrap_settings.xml"));
         }
 
