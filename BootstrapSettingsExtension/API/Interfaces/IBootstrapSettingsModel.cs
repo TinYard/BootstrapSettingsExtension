@@ -1,4 +1,6 @@
-﻿namespace TinYard.BootstrapSettings.API.Interfaces
+﻿using System;
+
+namespace TinYard.BootstrapSettings.API.Interfaces
 {
     public interface IBootstrapSettingsModel
     {
@@ -7,6 +9,7 @@
         string GetSetting(string settingName);
 
         T GetSetting<T>(string settingName);
+        object GetSetting(string settingName, Type settingValueType);
         bool TryGetSetting<T>(string settingName, out T settingValue);
     }
 }
