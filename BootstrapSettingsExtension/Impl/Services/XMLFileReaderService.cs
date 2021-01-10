@@ -33,6 +33,18 @@ namespace TinYard.BootstrapSettings.Impl.Services
             return first.Value;
         }
 
+        /// <summary>
+        /// Use the generic version of this <see cref="GetNodeTValue{T}(string)"/> when possible.
+        /// </summary>
+        public object GetNodeValue(string nodeName, Type nodeValueType)
+        {
+            var getNodeValMethod = typeof(XMLFileReaderService).GetMethod(nameof(GetNodeTValue));
+
+            var genericGetNodeValMethod = getNodeValMethod.MakeGenericMethod(nodeValueType);
+
+            return genericGetNodeValMethod.Invoke(this, new object[] { nodeName });
+        }
+
         public T GetNodeTValue<T>(string nodeName)
         {
             var nodeToDeserialize = _xmlDocument.Descendants(nodeName).FirstOrDefault();

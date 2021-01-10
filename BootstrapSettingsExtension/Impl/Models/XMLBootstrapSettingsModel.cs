@@ -27,6 +27,14 @@ namespace TinYard.BootstrapSettings.Impl.Models
             return _xmlFileReader.GetNodeStringValue(settingName);
         }
 
+        /// <summary>
+        /// If you can, use the Generic version of this.
+        /// </summary>
+        public object GetSetting(string settingName, Type settingValueType)
+        {
+            return _xmlFileReader.GetNodeValue(settingName, settingValueType);
+        }
+
         public T GetSetting<T>(string settingName)
         {
             return _xmlFileReader.GetNodeTValue<T>(settingName);
@@ -34,7 +42,16 @@ namespace TinYard.BootstrapSettings.Impl.Models
 
         public bool TryGetSetting<T>(string settingName, out T settingValue)
         {
-            throw new System.NotImplementedException();
+            settingValue = default(T);
+            try
+            {
+                settingValue = GetSetting<T>(settingName);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

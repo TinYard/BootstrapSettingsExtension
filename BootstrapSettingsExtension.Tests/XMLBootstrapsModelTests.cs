@@ -42,6 +42,19 @@ namespace TinYard.BootstrapSettings.Tests
         }
 
         [TestMethod]
+        public void Model_Can_Get_Setting_As_Object()
+        {
+            //If this fails, Generic setting should be failing too
+            TestClasses.Environment expected = _bootstrapSettingsModel.GetSetting<TestClasses.Environment>("Environment");
+
+            object result = _bootstrapSettingsModel.GetSetting("Environment", typeof(TestClasses.Environment));
+
+            var actual = result as TestClasses.Environment;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void Model_Can_Get_Generic_Setting()
         {
             TestClasses.Environment expected = new TestClasses.Environment
@@ -63,6 +76,40 @@ namespace TinYard.BootstrapSettings.Tests
             {
                 _bootstrapSettingsModel.GetSetting<bool>("Environment");
             });
+        }
+
+        [TestMethod]
+        public void Model_Returns_False_On_Try_Get_Invalid()
+        {
+            int result = -1;
+
+            bool actual = _bootstrapSettingsModel.TryGetSetting<int>("Environment", out result);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void Model_Returns_True_On_Try_Get_Valid()
+        {
+            int result = -1;
+
+            bool actual = _bootstrapSettingsModel.TryGetSetting<int>("Numerical", out result);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void Model_Returns_True_And_Correct_Value_With_Try_Get()
+        {
+            int expected = _bootstrapSettingsModel.GetSetting<int>("Numerical");
+
+            //-1 means that even if expected fails to get the value, the test will still fail
+            int actual = -1;
+
+            bool success = _bootstrapSettingsModel.TryGetSetting<int>("Numerical", out actual);
+
+            Assert.IsTrue(success);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
