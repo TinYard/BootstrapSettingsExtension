@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bootstraps>
+  <Environment>
+    <Name>Production</Name>
+    <OS>Windows</OS>
+    <Deployed>true</Deployed>
+  </Environment>
+  <Name>example</Name>
+  <Valid>true</Valid>
+  <Numerical>69</Numerical>
+</Bootstraps>
