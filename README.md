@@ -24,6 +24,10 @@ This is some way between Version 1.2 and Version 1.3. It should be updated to wo
 
 ## Using this Extension
 
+Short and sweet:
+
+* Inherit the `IBootstrapSettingRequestor` interface when you want to dispatch events asking for settings.
+* Inherit the `IBootstrapSettingReceiver` interface when you want to receive settings requested.
 
 ### Configuration
 
