@@ -24,9 +24,17 @@ namespace TinYard.BootstrapSettings.Impl.Commands
             if (!bootstrapSettingsModel.HasSetting(settingName))
                 return;
 
-            object settingVal = bootstrapSettingsModel.GetSetting(settingName, evt.SettingValueType);
+            if (evt.SettingValueType != null)
+            {
+                object settingVal = bootstrapSettingsModel.GetSetting(settingName, evt.SettingValueType);
+                dispatcher.Dispatch(new RetrieveBootstrapSettingEvent(RetrieveBootstrapSettingEvent.Type.Got, settingName, evt.SettingValueType, settingVal));
+            }
+            else
+            {
+                string settingVal = bootstrapSettingsModel.GetSetting(settingName);
+                dispatcher.Dispatch(new RetrieveBootstrapSettingEvent(RetrieveBootstrapSettingEvent.Type.Got, settingName, typeof(string), settingVal));
+            }
 
-            dispatcher.Dispatch(new RetrieveBootstrapSettingEvent(RetrieveBootstrapSettingEvent.Type.Got, settingName, evt.SettingValueType, settingVal));
         }
     }
 }

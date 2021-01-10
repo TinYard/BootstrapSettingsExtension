@@ -15,7 +15,7 @@ namespace TinYard.BootstrapSettings
 
         public XMLBootstrapSettingsConfig()
         {
-            _bootstrapSettingsFilePath = Directory.GetCurrentDirectory();
+            _bootstrapSettingsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets/bootstrap-settings.xml");
         }
 
         public XMLBootstrapSettingsConfig(string bootstrapSettingsFilePath)
