@@ -23,7 +23,7 @@ namespace TinYard.BootstrapSettings.Tests
 
             _context.Install(new MVCBundle());//Dependency
             _context.Install(new BootstrapSettingsExtension());
-            _context.Configure(new BootstrapSettingsConfig(testXmlPath));
+            _context.Configure(new XMLBootstrapSettingsConfig(testXmlPath));
 
             _context.Initialize();
 

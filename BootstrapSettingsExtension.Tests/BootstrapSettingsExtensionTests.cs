@@ -13,9 +13,9 @@ namespace TinYard.BootstrapSettings.Tests
         }
 
         [TestMethod]
-        public void BootstrapSettingsConfig_Is_Config()
+        public void XMLBootstrapSettingsConfig_Is_Config()
         {
-            Assert.IsInstanceOfType(new BootstrapSettingsConfig(), typeof(IConfig));
+            Assert.IsInstanceOfType(new XMLBootstrapSettingsConfig(), typeof(IConfig));
         }
     }
 }
