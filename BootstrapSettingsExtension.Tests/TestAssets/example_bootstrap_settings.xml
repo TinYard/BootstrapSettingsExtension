@@ -6,5 +6,6 @@
     <Deployed>true</Deployed>
   </Environment>
   <Name>example</Name>
-  <Valid>true</Valid>/>
+  <Valid>true</Valid>
+  <Numerical>69</Numerical>
 </Bootstraps>
